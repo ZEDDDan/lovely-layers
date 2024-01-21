@@ -1,7 +1,11 @@
-import React from "react";
+import Layout from "../../components/Layout/Layout";
 
 const Categories = () => {
-  return <div>Categories</div>;
+  return (
+    <Layout>
+      <div>Categories</div>
+    </Layout>
+  );
 };
 
 export default Categories;

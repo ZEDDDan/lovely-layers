@@ -1,10 +1,17 @@
+import { FC } from "react";
 import Navigation from "../Navigation/Navigation";
 
-const Layout = () => {
+type Props = {
+  className?: string;
+  children: string | JSX.Element | JSX.Element[];
+};
+
+const Layout: FC<Props> = ({ children }) => {
   return (
-    <div className="layout container">
+    <header className="layout">
       <Navigation />
-    </div>
+      {children}
+    </header>
   );
 };
 

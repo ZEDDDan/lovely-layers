@@ -1,7 +1,37 @@
-import "./Header.css";
+import { FC } from "react";
+import { Button, Product } from "../../types/strapiRes";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
 
-const Header = () => {
-  return <div className="header">Header</div>;
+import "./Header.css";
+import SlideCard from "./SlideCard/SlideCard";
+
+interface Props {
+  productsDiscountButton: Button;
+  isLoading: boolean;
+  products: Product[];
+}
+
+const Header: FC<Props> = ({ products, isLoading, productsDiscountButton }) => {
+  return (
+    <div className="header">
+      <Swiper
+        slidesPerView={1}
+        navigation
+        modules={[Navigation, Pagination]}
+        className="header__swiper"
+      >
+        {products.map(({ attributes, id }) => (
+          <SwiperSlide key={id}>
+            <SlideCard
+              data={attributes}
+              productsDiscountButton={productsDiscountButton}
+            />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </div>
+  );
 };
 
 export default Header;

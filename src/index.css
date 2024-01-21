@@ -4,7 +4,27 @@
   box-sizing: border-box;
 }
 
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
 .container {
   width: 1140px;
   margin: 0 auto;
+}
+
+html {
+  font-size: 16px;
+  font-family: "Montserrat Alternates";
+}
+
+:root {
+  --red-btn-color: #d90429;
+  --back-color: #2b2b2b;
+  --dark-color: #000;
+  --white-color: #fff;
 }
