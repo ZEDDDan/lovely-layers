@@ -1,5 +1,6 @@
 import { FC } from "react";
 import Navigation from "../Navigation/Navigation";
+import Footer from "../Footer/Footer";
 
 type Props = {
   className?: string;
@@ -11,6 +12,7 @@ const Layout: FC<Props> = ({ children }) => {
     <header className="layout">
       <Navigation />
       {children}
+      <Footer />
     </header>
   );
 };
