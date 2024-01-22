@@ -19,7 +19,6 @@ const SlideCard: FC<Props> = ({ id, data, productsDiscountButton }) => {
     <div className="container slide-card">
       <div className="slide-card__info">
         <div>
-          <h3>{data.category.data.attributes.label}</h3>
           <h2>{data.name}</h2>
           <p>{data.desc_short}</p>
         </div>
