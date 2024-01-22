@@ -1,0 +1,10 @@
+.cat-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.cat-layout .layout__sidear-wrapper {
+  flex: 1;
+  padding: 20px 0 60px 0;
+}

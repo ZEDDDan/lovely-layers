@@ -16,7 +16,7 @@ export const PriceWithDiscount: FC<IPriceWithDiscount> = ({
   return (
     <div className="price-with-discount">
       <Price
-        price={price}
+        price={discountPrice}
         size={Size.medium}
         className="price-with-discount__discount-price"
         color={color}
@@ -24,7 +24,7 @@ export const PriceWithDiscount: FC<IPriceWithDiscount> = ({
       <Price
         className="price-with-discount__price"
         currency={currency}
-        price={discountPrice}
+        price={price}
         size={size}
         color={color}
       />

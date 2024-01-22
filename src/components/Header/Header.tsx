@@ -13,10 +13,8 @@ interface Props {
 }
 
 const Header: FC<Props> = ({ products, isLoading, productsDiscountButton }) => {
-  console.log(products);
-
   return (
-    <div className="header">
+    <header className="header">
       <Swiper
         slidesPerView={1}
         navigation
@@ -33,7 +31,7 @@ const Header: FC<Props> = ({ products, isLoading, productsDiscountButton }) => {
           </SwiperSlide>
         ))}
       </Swiper>
-    </div>
+    </header>
   );
 };
 

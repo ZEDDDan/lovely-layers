@@ -1,15 +1,18 @@
 import useSWR from "swr";
 import { CategoryResponse } from "../../types/categoryRes";
-import queryString from "query-string";
+import qs from "qs";
 
 export function useCategoryDataBySlug(slug: string) {
-  const params = queryString.stringify({
-    filters: {
-      slug: {
-        $eq: slug,
+  const params = qs.stringify(
+    {
+      filters: {
+        slug: {
+          $eq: slug,
+        },
       },
     },
-  });
+    { encodeValuesOnly: true }
+  );
 
   const { data, error, isLoading } = useSWR<CategoryResponse>(
     `/api/categories?${params}`

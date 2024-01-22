@@ -3,6 +3,7 @@ import { Product } from "../../types/strapiRes";
 
 import "./ProductCard.css";
 import Price from "../Price/Price";
+import { Link } from "react-router-dom";
 
 interface IProductCard {
   product: Product;
@@ -10,7 +11,10 @@ interface IProductCard {
 
 const ProductCard: FC<IProductCard> = ({ product }) => {
   return (
-    <div className="product-card">
+    <Link
+      className="product-card"
+      to={`/categories/${product.attributes.category.data.attributes.slug}/${product.id}`}
+    >
       <img
         className="product-card__img"
         src={
@@ -22,14 +26,11 @@ const ProductCard: FC<IProductCard> = ({ product }) => {
       <div className="product-card__hero">
         <p>{product.attributes.name}</p>
         <Price
-          price={
-            product.attributes.has_discount
-              ? (product.attributes.discount_price as string)
-              : product.attributes.price
-          }
+          currency={product.attributes.currency.data.attributes.name}
+          price={product.attributes.price}
         />
       </div>
-    </div>
+    </Link>
   );
 };
 

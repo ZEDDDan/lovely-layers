@@ -2,18 +2,28 @@ import { FC } from "react";
 import Navigation from "../Navigation/Navigation";
 import Footer from "../Footer/Footer";
 
+import "./Layout.css";
+
 type Props = {
   className?: string;
+  sidebarComponent?: JSX.Element;
   children: string | JSX.Element | JSX.Element[];
 };
 
-const Layout: FC<Props> = ({ children }) => {
+const Layout: FC<Props> = ({ children, className = "", sidebarComponent }) => {
   return (
-    <header className="layout">
+    <div className={`layout ${className}`}>
       <Navigation />
-      {children}
+      {sidebarComponent ? (
+        <div className="layout__sidear-wrapper">
+          {sidebarComponent}
+          {children}
+        </div>
+      ) : (
+        children
+      )}
       <Footer />
-    </header>
+    </div>
   );
 };
 

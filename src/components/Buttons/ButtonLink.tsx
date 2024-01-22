@@ -16,7 +16,9 @@ export const ButtonLink: FC<ButtonLinkProps> = ({
       style={buttonProps.styles || undefined}
       className="btn btn-link"
     >
-      <Link to={href}>{buttonProps.label}</Link>
+      <Link style={buttonProps.styles || undefined} to={href}>
+        {buttonProps.label}
+      </Link>
     </button>
   );
 };
