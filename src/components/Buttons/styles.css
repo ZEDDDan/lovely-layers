@@ -9,7 +9,20 @@
   padding: 10px 24px;
   color: var(--white-color);
   background-color: var(--red-btn-color);
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.btn-link {
+  border: none;
+  background-color: var(--red-btn-color);
+}
+
+.btn-link a {
+  display: inline-block;
+  font-size: 1rem;
+  padding: 10px 24px;
+  color: var(--white-color);
   letter-spacing: 0.5px;
 }

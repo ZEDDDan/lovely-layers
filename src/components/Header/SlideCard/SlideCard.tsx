@@ -9,11 +9,12 @@ import "./SlideCard.css";
 import Button from "../../Buttons";
 
 interface Props {
+  id: number;
   data: ProductAttributes;
   productsDiscountButton: ButtonTyp;
 }
 
-const SlideCard: FC<Props> = ({ data, productsDiscountButton }) => {
+const SlideCard: FC<Props> = ({ id, data, productsDiscountButton }) => {
   return (
     <div className="container slide-card">
       <div className="slide-card__info">
@@ -28,7 +29,11 @@ const SlideCard: FC<Props> = ({ data, productsDiscountButton }) => {
             discountPrice={data.discount_price as string}
             price={data.price}
           />
-          <Button buttonProps={productsDiscountButton} />
+          <Button
+            href={`/categories/${data.category.data.attributes.slug}/${id}`}
+            btnType="link"
+            buttonProps={productsDiscountButton}
+          />
         </div>
       </div>
       <div>

@@ -13,6 +13,8 @@ interface Props {
 }
 
 const Header: FC<Props> = ({ products, isLoading, productsDiscountButton }) => {
+  console.log(products);
+
   return (
     <div className="header">
       <Swiper
@@ -24,6 +26,7 @@ const Header: FC<Props> = ({ products, isLoading, productsDiscountButton }) => {
         {products.map(({ attributes, id }) => (
           <SwiperSlide key={id}>
             <SlideCard
+              id={id}
               data={attributes}
               productsDiscountButton={productsDiscountButton}
             />
