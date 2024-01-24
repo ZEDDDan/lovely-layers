@@ -1,22 +1,75 @@
+import { useState } from "react";
+import CategorySidebar from "../../components/CategorySidebar/CategorySidebar";
 import Layout from "../../components/Layout/Layout";
+import ProductCard from "../../components/ProductCard/ProductCard";
 import { useProductsData } from "../../hooks/api/useProductsData";
 
 import "./Categories.css";
+import { useParams } from "react-router-dom";
+import { useCategorySidebarData } from "../../hooks/api/useCategorySidebarData";
 
 const Categories = () => {
-  const {} = useProductsData({
-    brandIds: [1],
-    prices: [0, 1000],
-    shoesSizeIds: [1],
-    slug: "new",
+  let { slug } = useParams();
+
+  const { data: catData } = useCategorySidebarData();
+
+  const [brandIds, setBrandIds] = useState<number[]>([]);
+  const [prices, setPrices] = useState<number[]>([]);
+  const [shoesSizeIds, setShoesSizeIds] = useState<number[]>([]);
+
+  const { data } = useProductsData({
+    brandIds,
+    prices,
+    shoesSizeIds,
+    slug: slug as string,
   });
+
+  const handleChange = (
+    type: "brandIds" | "prices" | "shoesSizeIds",
+    value: number | number[]
+  ) => {
+    switch (type) {
+      case "brandIds":
+        setBrandIds(
+          brandIds.find((id) => id === value)
+            ? brandIds.filter((id) => id !== value)
+            : [...brandIds, value as number]
+        );
+        return;
+      case "prices":
+        setPrices(value as number[]);
+        return;
+      case "shoesSizeIds":
+        setShoesSizeIds(
+          shoesSizeIds.find((id) => id === value)
+            ? shoesSizeIds.filter((id) => id !== value)
+            : [...shoesSizeIds, value as number]
+        );
+        return;
+      default:
+        return;
+    }
+  };
 
   return (
     <Layout
       className="cat-layout"
-      sidebarComponent={<div style={{ border: "2px solid red" }}></div>}
+      sidebarComponent={
+        <CategorySidebar
+          brandIds={brandIds}
+          prices={prices}
+          shoesSizeIds={shoesSizeIds}
+          data={catData}
+          handleChange={handleChange}
+        />
+      }
     >
-      <div className="cat">Categories</div>
+      {/* TODO: should add pagination logic */}
+      <div className="cat">
+        {data.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
     </Layout>
   );
 };

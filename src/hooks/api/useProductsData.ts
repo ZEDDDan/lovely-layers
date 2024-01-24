@@ -1,12 +1,18 @@
 import useSWR from "swr";
 import qs from "qs";
-import { Product, StrapiArrayResponse } from "../../types/strapiRes";
+import {
+  Product,
+  ProductAttributes,
+  StrapiArrayResponse,
+} from "../../types/strapiRes";
 
 interface IProductsProps {
   slug: string;
   shoesSizeIds: number[];
   brandIds: number[];
-  prices: [number, number];
+  prices: number[];
+  page?: number;
+  pageSize?: number;
 }
 
 export function useProductsData({
@@ -14,10 +20,16 @@ export function useProductsData({
   shoesSizeIds,
   brandIds,
   prices,
+  page = 1,
+  pageSize = 10,
 }: IProductsProps) {
   const params = qs.stringify(
     {
-      populate: ["currency"],
+      populate: ["currency", "category", "images"],
+      pagination: {
+        page,
+        pageSize,
+      },
       filters: {
         category: {
           slug: {
@@ -36,9 +48,9 @@ export function useProductsData({
     { encodeValuesOnly: true }
   );
 
-  const { data, error, isLoading } = useSWR<StrapiArrayResponse<Product>>(
-    `/api/products?${params}`
-  );
+  const { data, error, isLoading } = useSWR<
+    StrapiArrayResponse<ProductAttributes>
+  >(`/api/products?${params}`);
 
   return {
     data: data?.data || [],

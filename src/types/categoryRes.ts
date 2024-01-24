@@ -9,5 +9,4 @@ export interface CategoryAttributes {
   label: string;
 }
 
-// Используйте общий и конкретный тип вместе
 export type CategoryResponse = StrapiArrayResponse<CategoryAttributes>;
