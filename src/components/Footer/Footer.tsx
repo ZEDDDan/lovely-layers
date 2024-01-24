@@ -46,7 +46,7 @@ const Footer: FC = () => {
             {data.data.attributes.support_block.link}
           </a>
         </div>
-        <p className="footet__copyright">{data.data.attributes.copyright}</p>
+        <p className="footer__copyright">{data.data.attributes.copyright}</p>
       </div>
     </div>
   );

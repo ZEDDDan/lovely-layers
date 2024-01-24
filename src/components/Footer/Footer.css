@@ -32,6 +32,11 @@
   gap: 20px;
 }
 
+.footer__copyright {
+  display: flex;
+  align-items: center;
+}
+
 .footer__suppot {
   display: flex;
   align-items: center;
