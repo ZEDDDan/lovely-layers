@@ -20,8 +20,8 @@ export function useProductsData({
   shoesSizeIds,
   brandIds,
   prices,
-  page = 1,
-  pageSize = 10,
+  page,
+  pageSize,
 }: IProductsProps) {
   const params = qs.stringify(
     {

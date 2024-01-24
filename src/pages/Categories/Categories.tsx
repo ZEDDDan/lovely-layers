@@ -6,12 +6,9 @@ import { useProductsData } from "../../hooks/api/useProductsData";
 
 import "./Categories.css";
 import { useParams } from "react-router-dom";
-import { useCategorySidebarData } from "../../hooks/api/useCategorySidebarData";
 
 const Categories = () => {
   let { slug } = useParams();
-
-  const { data: catData } = useCategorySidebarData();
 
   const [brandIds, setBrandIds] = useState<number[]>([]);
   const [prices, setPrices] = useState<number[]>([]);
@@ -59,7 +56,6 @@ const Categories = () => {
           brandIds={brandIds}
           prices={prices}
           shoesSizeIds={shoesSizeIds}
-          data={catData}
           handleChange={handleChange}
         />
       }

@@ -3,12 +3,11 @@ import React, { FC } from "react";
 import "./CategorySidebar.css";
 import Line from "../Line/Line";
 import Checkbox from "../Checkbox/Checkbox";
-import { CategorySidebarResponse } from "../../types/categorySidebarRes";
 import SizeButton from "../SizeButton/SizeButton";
 import MultiRangeSlider from "../MultiRangeSlider/MultiRangeSlider";
+import { useCategorySidebarData } from "../../hooks/api/useCategorySidebarData";
 
 interface ICategorySidebar {
-  data: CategorySidebarResponse | undefined;
   shoesSizeIds: number[];
   brandIds: number[];
   prices: number[];
@@ -20,11 +19,12 @@ interface ICategorySidebar {
 
 const CategorySidebar: FC<ICategorySidebar> = ({
   handleChange,
-  data,
   brandIds,
   prices,
   shoesSizeIds,
 }) => {
+  const { data } = useCategorySidebarData();
+
   if (!data?.data) {
     return null;
   }
