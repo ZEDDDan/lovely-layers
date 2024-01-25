@@ -1,10 +1,6 @@
 import useSWR from "swr";
 import qs from "qs";
-import {
-  Product,
-  ProductAttributes,
-  StrapiArrayResponse,
-} from "../../types/strapiRes";
+import { ProductAttributes, StrapiArrayResponse } from "../../types/strapiRes";
 
 interface IProductsProps {
   slug: string;

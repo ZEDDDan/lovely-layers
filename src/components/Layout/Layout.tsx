@@ -5,12 +5,18 @@ import Footer from "../Footer/Footer";
 import "./Layout.css";
 
 type Props = {
+  withFooter?: boolean;
   className?: string;
   sidebarComponent?: JSX.Element;
   children: string | JSX.Element | JSX.Element[];
 };
 
-const Layout: FC<Props> = ({ children, className = "", sidebarComponent }) => {
+const Layout: FC<Props> = ({
+  children,
+  className = "",
+  sidebarComponent,
+  withFooter = true,
+}) => {
   return (
     <div className={`layout ${className}`}>
       <Navigation />
@@ -22,7 +28,7 @@ const Layout: FC<Props> = ({ children, className = "", sidebarComponent }) => {
       ) : (
         children
       )}
-      <Footer />
+      {withFooter && <Footer />}
     </div>
   );
 };

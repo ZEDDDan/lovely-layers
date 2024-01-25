@@ -6,5 +6,5 @@ export interface ButtonProps
 }
 
 export interface ButtonLinkProps extends ButtonProps {
-  href: string;
+  href?: string;
 }

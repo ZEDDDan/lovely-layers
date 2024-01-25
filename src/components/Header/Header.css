@@ -19,18 +19,6 @@
   align-items: center;
 }
 
-.header .swiper-button-next {
-  color: var(--dark-color);
-}
-
-.header .swiper-button-disabled {
-  visibility: hidden;
-}
-
-.header .swiper-button-prev {
-  color: var(--dark-color);
-}
-
 /* .header .swiper-slide img {
   display: block;
   width: 100%;

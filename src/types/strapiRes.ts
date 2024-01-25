@@ -1,4 +1,5 @@
 import { CategoryAttributes } from "./categoryRes";
+import { SizeAttributes } from "./sizesTypes";
 
 export interface StrapiResponseData<T> {
   id: number;
@@ -13,7 +14,7 @@ export interface ProductAttributes {
   name: string;
   desc: string;
   price: string;
-  quantity: string;
+  quantity: number;
   status: string;
   has_discount: boolean;
   discount_price: null | string;
@@ -21,6 +22,7 @@ export interface ProductAttributes {
   updatedAt: string;
   publishedAt: string;
   locale: string;
+  shoes_sizes: StrapiArrayResponse<SizeAttributes>;
   category: StrapiResponse<CategoryAttributes>;
   currency: StrapiResponse<Currency>;
   desc_short: null | string;
