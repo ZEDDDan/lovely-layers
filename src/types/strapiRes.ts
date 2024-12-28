@@ -62,8 +62,8 @@ export interface MediaFormats {
 }
 
 export interface Button {
-  disabled: boolean;
-  label: string;
+  disabled?: boolean;
+  label: React.ReactNode;
   id: number;
   styles: object | null;
 }

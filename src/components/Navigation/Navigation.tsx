@@ -47,7 +47,9 @@ const Navigation = () => {
             <img src="/static/images/shopping-cart.svg" alt="Shopping Cart" />
           </li>
           <li>
-            <img src="/static/images/favourites.svg" alt="Favourites" />
+            <Link to="/favourites">
+              <img src="/static/images/favourites.svg" alt="Favourites" />
+            </Link>
           </li>
         </ul>
       </div>

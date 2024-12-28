@@ -5,7 +5,7 @@ import "./Product.css";
 import { useProductData } from "../../hooks/api/useProductData";
 import Price, { Size } from "../../components/Price/Price";
 import { useProductTitlesData } from "../../hooks/api/useProductTitlesData";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import SizeButton from "../../components/SizeButton/SizeButton";
 import QuantitySelect from "../../components/QuantitySelect/QuantitySelect";
 import Button from "../../components/Buttons";
@@ -13,9 +13,12 @@ import { Swiper as SwiperComponent, SwiperSlide } from "swiper/react";
 import { Navigation, Thumbs, FreeMode, Zoom } from "swiper/modules";
 import Swiper from "swiper";
 import "swiper/css/zoom";
+import { useLocalStorage } from "usehooks-ts";
+import { TFavourites } from "../../types/favourites";
 
 const Product = () => {
   const { productId } = useParams();
+  const [ids, setIds] = useLocalStorage<TFavourites>("favourites", []);
 
   const [sizeId, setSizeId] = useState<number | null>(null);
   const [thumbsSwiper, setThumbsSwiper] = useState<null | Swiper>(null);
@@ -23,9 +26,26 @@ const Product = () => {
 
   const { data } = useProductData({ id: productId as string });
 
+  const isFav = useMemo(
+    () => ids.includes(productId as string),
+    [productId, ids]
+  );
+
   const { data: productTitlesData } = useProductTitlesData();
 
   const handleSize = (size: number) => setSizeId(size);
+
+  const handleFav = () => {
+    if (!productId) {
+      return;
+    }
+
+    const favs = isFav
+      ? ids.filter((id) => id !== productId)
+      : [...ids, productId];
+
+    setIds(favs);
+  };
 
   if (!data?.data || !productTitlesData?.data) {
     return null;
@@ -105,7 +125,17 @@ const Product = () => {
               maxCount={quantity}
               onChange={(quantity) => setSelectedQuantity(quantity)}
             />
-            <Button buttonProps={buy_button} disabled={!sizeId} />
+            <Button buttonProps={buy_button} disabled={!sizeId || !quantity} />
+            <button onClick={handleFav} className="product__favourites-btn">
+              <img
+                src={
+                  isFav
+                    ? "/static/images/favourites-filled-product.svg"
+                    : "/static/images/favourites-black-product.svg"
+                }
+                alt="Favourites"
+              />
+            </button>
           </div>
         </div>
       </div>

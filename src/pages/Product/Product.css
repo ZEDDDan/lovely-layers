@@ -102,3 +102,9 @@
 .product__price {
   margin-bottom: 20px;
 }
+
+.product__favourites-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
