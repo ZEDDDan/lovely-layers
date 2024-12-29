@@ -1,36 +1,42 @@
-import { useState } from "react";
-import CategorySidebar from "../../components/CategorySidebar/CategorySidebar";
 import Layout from "../../components/Layout/Layout";
 import ProductCard from "../../components/ProductCard/ProductCard";
-import { useProductsData } from "../../hooks/api/useProductsData";
-import { TFavourites } from "../../types/favourites";
 
 import "./Favourites.css";
-import { useParams } from "react-router-dom";
-import { useLocalStorage } from "usehooks-ts";
+import { useFavouritesData } from "../../hooks/api/useFavouritesData";
+import { useFavourites } from "../../hooks/logic/useFavourites";
+import { useFavProducts } from "../../hooks/api/useFavProducts";
 
 const Favourites = () => {
-  let { slug } = useParams();
+  const { handleFav, favProductsIds } = useFavourites();
 
-  const [ids, setIds] = useLocalStorage<TFavourites>("favourites", []);
+  const { data: pageData } = useFavouritesData();
 
-  const [brandIds, setBrandIds] = useState<number[]>([]);
-  const [prices, setPrices] = useState<number[]>([]);
-  const [shoesSizeIds, setShoesSizeIds] = useState<number[]>([]);
+  const { data } = useFavProducts(favProductsIds);
 
-  const { data } = useProductsData({
-    brandIds,
-    prices,
-    shoesSizeIds,
-    slug: slug as string,
-  });
+  if (!pageData) {
+    return null;
+  }
 
   return (
     <Layout>
-      <div className="favourites container">
-        {data.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+      <div className="container">
+        <h2 className="title favourites__title">{pageData.attributes.title}</h2>
+        {data.length ? (
+          data.map((product) => (
+            <div className="favourites">
+              <ProductCard
+                key={product.id}
+                product={product}
+                showTrash
+                onTrashClick={() => handleFav(product.id)}
+              />
+            </div>
+          ))
+        ) : (
+          <p className="favourites__empty-text">
+            {pageData.attributes.emptyFavText}
+          </p>
+        )}
       </div>
     </Layout>
   );

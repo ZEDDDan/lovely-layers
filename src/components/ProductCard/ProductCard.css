@@ -17,6 +17,14 @@
 
 .product-card__hero {
   padding: 40px 20px 20px 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.product-card__hero button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 .product-card__hero p {

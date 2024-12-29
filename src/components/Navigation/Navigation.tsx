@@ -1,11 +1,14 @@
 import Skeleton from "react-loading-skeleton";
 import { useCategoriesData } from "../../hooks/api/useCategoriesData";
 import "./Navigation.css";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 
 const Navigation = () => {
   const { data, isLoading } = useCategoriesData();
   let { slug } = useParams();
+  const { pathname } = useLocation();
+
+  const isFavPage = pathname.includes("favourites");
 
   return (
     <div className="navigation">
@@ -44,11 +47,18 @@ const Navigation = () => {
         </nav>
         <ul>
           <li>
-            <img src="/static/images/shopping-cart.svg" alt="Shopping Cart" />
+            <img src={"/static/images/shopping-cart.svg"} alt="Shopping Cart" />
           </li>
           <li>
             <Link to="/favourites">
-              <img src="/static/images/favourites.svg" alt="Favourites" />
+              <img
+                src={
+                  isFavPage
+                    ? "/static/images/favourities-nav-heart-active.svg"
+                    : "/static/images/favourites.svg"
+                }
+                alt="Favourites"
+              />
             </Link>
           </li>
         </ul>

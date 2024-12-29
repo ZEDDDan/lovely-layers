@@ -1,7 +1,8 @@
-import { StrapiArrayResponse } from "./strapiRes";
+import { StrapiResponse } from "./strapiRes";
 
 export interface FavouritesAttributes {
   title: string;
+  emptyFavText: string;
 }
 
-export type FavouritesResponse = StrapiArrayResponse<FavouritesAttributes>;
+export type FavouritesResponse = StrapiResponse<FavouritesAttributes>;

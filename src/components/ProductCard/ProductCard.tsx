@@ -7,9 +7,21 @@ import { Link } from "react-router-dom";
 
 interface IProductCard {
   product: Product;
+  showTrash?: boolean;
+  onTrashClick?: () => void;
 }
 
-const ProductCard: FC<IProductCard> = ({ product }) => {
+const ProductCard: FC<IProductCard> = ({
+  product,
+  showTrash,
+  onTrashClick,
+}) => {
+  const handleTrashClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    onTrashClick?.();
+  };
+
   return (
     <Link
       className="product-card"
@@ -24,11 +36,22 @@ const ProductCard: FC<IProductCard> = ({ product }) => {
         alt={product.attributes.images.data[0].attributes.alternativeText}
       />
       <div className="product-card__hero">
-        <p>{product.attributes.name}</p>
-        <Price
-          currency={product.attributes.currency.data.attributes.name}
-          price={product.attributes.price}
-        />
+        <div>
+          <p>{product.attributes.name}</p>
+          <Price
+            currency={product.attributes.currency.data.attributes.name}
+            price={product.attributes.price}
+          />
+        </div>
+        {showTrash && (
+          <button onClick={handleTrashClick}>
+            <img
+              src="static/images/trash-gray.svg"
+              alt="Trash"
+              className="product-card__trash"
+            />
+          </button>
+        )}
       </div>
     </Link>
   );

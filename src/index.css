@@ -17,6 +17,12 @@ a {
   margin: 0 auto;
 }
 
+.title {
+  font-family: "Montserrat Alternates";
+  font-size: 24px;
+  font-weight: 600;
+}
+
 html {
   font-size: 16px;
   font-family: "Montserrat Alternates";
