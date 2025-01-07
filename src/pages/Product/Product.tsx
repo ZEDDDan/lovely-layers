@@ -15,6 +15,7 @@ import Swiper from "swiper";
 import "swiper/css/zoom";
 import { useFavourites } from "../../hooks/logic/useFavourites";
 import { useMemo } from "react";
+import { useCart } from "../../hooks/logic/useCart";
 
 const Product = () => {
   const { productId } = useParams();
@@ -26,6 +27,8 @@ const Product = () => {
   const { checkIsFav, handleFav, favProductsIds } = useFavourites();
 
   const { data } = useProductData({ id: productId as string });
+
+  const { handleAddProducts } = useCart();
 
   const { data: productTitlesData } = useProductTitlesData();
 
@@ -115,7 +118,13 @@ const Product = () => {
               maxCount={quantity}
               onChange={(quantity) => setSelectedQuantity(quantity)}
             />
-            <Button buttonProps={buy_button} disabled={!sizeId || !quantity} />
+            <Button
+              onClick={() =>
+                handleAddProducts(String(productId), selectedQuantity)
+              }
+              buttonProps={buy_button}
+              disabled={!sizeId || !quantity}
+            />
             <button
               onClick={() => handleFav(productId as string)}
               className="product__favourites-btn"

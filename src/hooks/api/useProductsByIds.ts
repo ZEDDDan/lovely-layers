@@ -3,7 +3,7 @@ import qs from "qs";
 
 import { ProductAttributes, StrapiArrayResponse } from "../../types/strapiRes";
 
-export const useFavProducts = (ids: string[] = []) => {
+export const useProductsByIds = (ids: string[] = []) => {
   const params = qs.stringify(
     {
       filters: {

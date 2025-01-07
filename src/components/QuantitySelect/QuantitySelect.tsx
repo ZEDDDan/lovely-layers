@@ -1,21 +1,21 @@
-import React, { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 
 import "./QuantitySelect.css";
 
 interface IQuantitySelect {
   maxCount?: number;
+  minimumCount?: number;
   onChange?: (value: number) => void;
+  defaultValue?: number;
 }
 
 const QuantitySelect: FC<IQuantitySelect> = ({
   maxCount = 1,
+  minimumCount = 0,
   onChange = () => {},
+  defaultValue = 1,
 }) => {
-  const [count, setCount] = useState<number>(1);
-
-  useEffect(() => {
-    onChange(count);
-  }, [count, onChange]);
+  const [count, setCount] = useState<number>(defaultValue);
 
   const handleCount = (type: "plus" | "minus") => {
     switch (type) {
@@ -26,7 +26,7 @@ const QuantitySelect: FC<IQuantitySelect> = ({
         }
         break;
       case "minus":
-        if (count - 1 !== 0) {
+        if (count - 1 !== minimumCount) {
           setCount(count - 1);
           onChange(count - 1);
         }

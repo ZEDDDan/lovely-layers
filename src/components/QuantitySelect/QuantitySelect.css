@@ -1,6 +1,8 @@
 .quantity-select {
   display: flex;
   gap: 20px;
+  height: 48px;
+  align-items: center;
 }
 
 .quantity-select__count {

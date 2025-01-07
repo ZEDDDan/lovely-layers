@@ -2,6 +2,7 @@ import Skeleton from "react-loading-skeleton";
 import { useCategoriesData } from "../../hooks/api/useCategoriesData";
 import "./Navigation.css";
 import { Link, useParams, useLocation } from "react-router-dom";
+import { useCart } from "../../hooks/logic/useCart";
 
 const Navigation = () => {
   const { data, isLoading } = useCategoriesData();
@@ -9,6 +10,11 @@ const Navigation = () => {
   const { pathname } = useLocation();
 
   const isFavPage = pathname.includes("favourites");
+  const isCartPage = pathname.includes("cart");
+
+  const { products } = useCart();
+
+  const productsInCart = products.length;
 
   return (
     <div className="navigation">
@@ -46,8 +52,20 @@ const Navigation = () => {
           </ul>
         </nav>
         <ul>
-          <li>
-            <img src={"/static/images/shopping-cart.svg"} alt="Shopping Cart" />
+          <li className="navigation__cart">
+            <Link to="/cart">
+              <span className="navigation__products-count">
+                {productsInCart}
+              </span>
+              <img
+                src={
+                  isCartPage
+                    ? "/static/images/shopping-cart-active.svg"
+                    : "/static/images/shopping-cart.svg"
+                }
+                alt="Shopping Cart"
+              />
+            </Link>
           </li>
           <li>
             <Link to="/favourites">

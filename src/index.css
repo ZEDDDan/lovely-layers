@@ -49,4 +49,5 @@ html {
   --light-gray-color: rgba(0, 0, 0, 0.15);
   --dark-color: #000;
   --white-color: #fff;
+  --rt-opacity: 1 !important;
 }
