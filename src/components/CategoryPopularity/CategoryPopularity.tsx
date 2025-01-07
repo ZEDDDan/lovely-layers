@@ -1,10 +1,21 @@
 import React from "react";
-import { PieChart, Pie, Cell } from "recharts";
+import { PieChart, Pie, Cell, Tooltip } from "recharts";
 import "./CategoryPopularity.css";
 import { useCategoryPopularityData } from "../../hooks/logic/useCategoryPopularityData";
 
-const CategoryPopularity: React.FC = () => {
-  const { categories, percentage } = useCategoryPopularityData();
+// const [activeTab, setActiveTab] = useState<"WEEKLY" | "MONTHLY" | "YEARLY">(
+//   "MONTHLY"
+// );
+
+interface CategoryPopularityProps {
+  activeTab: "WEEKLY" | "MONTHLY" | "YEARLY";
+}
+
+const CategoryPopularity: React.FC<CategoryPopularityProps> = ({
+  activeTab,
+}) => {
+  // тут твои данные для графика
+  const { categories, percentage } = useCategoryPopularityData(activeTab);
 
   return (
     <div className="category-popularity">
@@ -25,6 +36,7 @@ const CategoryPopularity: React.FC = () => {
               <Cell key={`cell-${index}`} fill={entry.color} stroke="none" />
             ))}
           </Pie>
+          <Tooltip />
         </PieChart>
         <div className="category-popularity__percentage">{percentage}%</div>
       </div>

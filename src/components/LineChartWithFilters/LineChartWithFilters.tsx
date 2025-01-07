@@ -13,28 +13,28 @@ import "./LineChartWithFilters.css";
 // Мок-данные для графика
 const data = {
   week: [
-    { date: "Jan 1", value1: 100, value2: 50 },
-    { date: "Jan 2", value1: 150, value2: 80 },
-    { date: "Jan 3", value1: 200, value2: 100 },
-    { date: "Jan 4", value1: 300, value2: 120 },
-    { date: "Jan 5", value1: 250, value2: 110 },
-    { date: "Jan 6", value1: 180, value2: 90 },
-    { date: "Jan 7", value1: 150, value2: 80 },
+    { date: "Jan 1", views: 100, sells: 50 },
+    { date: "Jan 2", views: 150, sells: 80 },
+    { date: "Jan 3", views: 200, sells: 100 },
+    { date: "Jan 4", views: 300, sells: 120 },
+    { date: "Jan 5", views: 250, sells: 110 },
+    { date: "Jan 6", views: 180, sells: 90 },
+    { date: "Jan 7", views: 150, sells: 80 },
   ],
   month: [
-    { date: "Week 1", value1: 400, value2: 300 },
-    { date: "Week 2", value1: 500, value2: 400 },
-    { date: "Week 3", value1: 600, value2: 450 },
-    { date: "Week 4", value1: 700, value2: 500 },
+    { date: "Week 1", views: 400, sells: 300 },
+    { date: "Week 2", views: 500, sells: 400 },
+    { date: "Week 3", views: 600, sells: 450 },
+    { date: "Week 4", views: 700, sells: 500 },
   ],
   year: [
-    { date: "Jan", value1: 1200, value2: 1000 },
-    { date: "Feb", value1: 1500, value2: 1200 },
-    { date: "Mar", value1: 1800, value2: 1400 },
-    { date: "Apr", value1: 1600, value2: 1300 },
-    { date: "May", value1: 2000, value2: 1800 },
-    { date: "Jun", value1: 2200, value2: 1900 },
-    { date: "Jul", value1: 2500, value2: 2100 },
+    { date: "Jan", views: 1200, sells: 1000 },
+    { date: "Feb", views: 1500, sells: 1200 },
+    { date: "Mar", views: 1800, sells: 1400 },
+    { date: "Apr", views: 1600, sells: 1300 },
+    { date: "May", views: 2000, sells: 1800 },
+    { date: "Jun", views: 2200, sells: 1900 },
+    { date: "Jul", views: 2500, sells: 2100 },
   ],
 };
 
@@ -88,7 +88,7 @@ const LineChartWithFilters: React.FC = () => {
           <Line
             dot={false}
             type="monotone"
-            dataKey="value1"
+            dataKey="views"
             stroke="#2ECC71"
             strokeWidth={2}
             activeDot={{ r: 8 }}
@@ -96,7 +96,7 @@ const LineChartWithFilters: React.FC = () => {
           <Line
             dot={false}
             type="monotone"
-            dataKey="value2"
+            dataKey="sells"
             stroke="#F39C12"
             strokeWidth={2}
             activeDot={{ r: 8 }}
